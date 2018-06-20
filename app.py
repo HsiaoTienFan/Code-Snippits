@@ -1,13 +1,4 @@
-import dash
-from dash.dependencies import Input, Output
-import dash_core_components as dcc
-import dash_html_components as html
-from loremipsum import get_sentences
-import pandas as pd
-pd.core.common.is_list_like = pd.api.types.is_list_like
-from pandas_datareader import data as web
-from datetime import datetime as dt
-import plotly.graph_objs as go
+from initialisation import *
 
 Now = pd.read_csv("C:/Users/Fanhsiao/Downloads/new.csv")
 labelNames = pd.read_csv("C:/Users/Fanhsiao/Downloads/Mozz/formattedLabels.csv")
@@ -82,12 +73,14 @@ def display_content(tabs, selected_dropdown_value):
             {
                 'x': df[getVariable[1]],
                 'type': tabs,
-                'name' : 'Mozz1'
+                'name' : 'Mozz1',
+                'opacity' : 0.75
             },
             {
                 'x': df[getVariable[2]],
                 'type': tabs,
-                'name' : 'Mozz2'
+                'name' : 'Mozz2',
+                'opacity' : 0.75
             }
         ]
 
