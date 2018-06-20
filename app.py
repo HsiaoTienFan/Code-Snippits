@@ -13,20 +13,11 @@ Now = pd.read_csv("C:/Users/Fanhsiao/Downloads/new.csv")
 labelNames = pd.read_csv("C:/Users/Fanhsiao/Downloads/Mozz/formattedLabels.csv")
 for i in range(0,len(labelNames.columns)):
     options = [{'label':labelNames.columns[i], 'value':labelNames.columns[i]}]
-    
-time = Now[Now.columns[0]]
-time_formated = pd.DataFrame(pd.to_datetime(time, format = '%Y-%m-%dT%H:%M:%SZ'))
-time_formated['year'] = pd.DatetimeIndex(time_formated['sample_dt']).year
-time_formated['month'] = pd.DatetimeIndex(time_formated['sample_dt']).year
-time_formated['hour'] = pd.DatetimeIndex(time_formated['sample_dt']).year
-time_formated['minute'] = pd.DatetimeIndex(time_formated['sample_dt']).year
-time_formated['second'] = pd.DatetimeIndex(time_formated['sample_dt']).year
 
 app = dash.Dash()
 app.config['suppress_callback_exceptions']=True
 app.scripts.config.serve_locally = True
 vertical = True
-
 
 app.layout = html.Div([
     html.H1('Variable Comparison'),
@@ -100,7 +91,6 @@ def display_content(tabs, selected_dropdown_value):
             }
         ]
 
-
     return html.Div([
         dcc.Graph(
             id='graph',
@@ -108,7 +98,6 @@ def display_content(tabs, selected_dropdown_value):
                 'data': data,
                 'layout' : go.Layout(barmode='overlay')
                 }
-            
         ),
     ])
 
