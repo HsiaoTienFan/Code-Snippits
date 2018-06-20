@@ -8,8 +8,10 @@ import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc
 import dash_html_components as html
-from loremipsum import get_sentences
 import pandas as pd
 from datetime import datetime as dt
 import plotly.graph_objs as go
+
+Now = pd.read_csv("C:/Users/Fanhsiao/Downloads/new.csv")
+labelNames = pd.read_csv("C:/Users/Fanhsiao/Downloads/Mozz/formattedLabels.csv")
     

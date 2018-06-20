@@ -1,7 +1,6 @@
 from initialisation import *
 
-Now = pd.read_csv("C:/Users/Fanhsiao/Downloads/new.csv")
-labelNames = pd.read_csv("C:/Users/Fanhsiao/Downloads/Mozz/formattedLabels.csv")
+
 for i in range(0,len(labelNames.columns)):
     options = [{'label':labelNames.columns[i], 'value':labelNames.columns[i]}]
 
