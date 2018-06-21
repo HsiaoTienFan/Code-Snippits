@@ -1,5 +1,5 @@
 from initialisation import *
-
+from separateDateTime import *
 
 for i in range(0,len(labelNames.columns)):
     options = [{'label':labelNames.columns[i], 'value':labelNames.columns[i]}]
@@ -42,6 +42,14 @@ app.layout = html.Div([
         html.Div(id='tab-output'),
         style={'width': '80%', 'float': 'right'}
     ),
+    dcc.RadioItems(
+        id='onOff',
+        options=[
+            {'label': 'Plant On', 'value': True},
+            {'label': 'All', 'value': False}
+        ],
+        value=False
+    ),
 ], style={
     'fontFamily': 'Sans-Serif',
     'margin-left': 'auto',
@@ -49,20 +57,20 @@ app.layout = html.Div([
 })
 
     
-@app.callback(Output('tab-output', 'children'), [Input('tabs', 'value'), Input('dropIn', 'value')])
-def display_content(tabs, selected_dropdown_value):
-    getVariable = ['sample_dt'] + [i for i in labelNames[selected_dropdown_value]]
+@app.callback(Output('tab-output', 'children'), [Input('tabs', 'value'), Input('dropIn', 'value'), Input('onOff', 'value')])
+def display_content(tabs, selected_dropdown_value, onOrOff):
+    getVariable = ['sample_dt'] + [i for i in labelNames[selected_dropdown_value]] + ['year', 'month', 'hour', 'minute', 'second','Mozz1_On']
     df = Now[getVariable]
     data = [
         {
-            'x': df.sample_dt,
-            'y': df[getVariable[1]],
+            'x': df.sample_dt[(Now['Mozz1_On'] == onOrOff) | (Now['Mozz1_On'] == True)],
+            'y': df[getVariable[1]][(Now['Mozz1_On'] == onOrOff) | (Now['Mozz1_On'] == True)],
             'type': tabs,
             'name' : 'Mozz1'
         },
-        {
-            'x': df.sample_dt,
-            'y': df[getVariable[2]],
+        { 
+            'x': df.sample_dt[(Now['Mozz2_On'] == onOrOff)| (Now['Mozz2_On'] == True)],
+            'y': df[getVariable[2]][(Now['Mozz2_On'] == onOrOff) | (Now['Mozz2_On'] == True)],
             'type': tabs,
             'name' : 'Mozz2'
         }
