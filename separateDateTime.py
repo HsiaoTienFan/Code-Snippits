@@ -12,4 +12,4 @@ Now['month'] = pd.DatetimeIndex(time_formated['sample_dt']).month
 Now['hour'] = pd.DatetimeIndex(time_formated['sample_dt']).hour
 Now['minute'] = pd.DatetimeIndex(time_formated['sample_dt']).minute
 Now['second'] = pd.DatetimeIndex(time_formated['sample_dt']).second
-Now.assign(Mozz1_On = Now[labelNames['Curd Mill Output'][0]] >= 60)
+Now = Now.assign(Mozz1_On = Now[labelNames['Curd Mill Output'][0]] >= 60)
