@@ -42,14 +42,6 @@ app.layout = html.Div([
         html.Div(id='tab-output'),
         style={'width': '80%', 'float': 'right'}
     ),
-    dcc.RadioItems(
-        id='onOff',
-        options=[
-            {'label': 'Plant On', 'value': True},
-            {'label': 'All', 'value': False}
-        ],
-        value=False
-    ),
 ], style={
     'fontFamily': 'Sans-Serif',
     'margin-left': 'auto',
@@ -98,6 +90,14 @@ def display_content(tabs, selected_dropdown_value, onOrOff):
                 'data': data,
                 'layout' : go.Layout(barmode='overlay')
                 }
+        ),
+        dcc.RadioItems(
+            id='onOff',
+            options=[
+                {'label': 'Plant On', 'value': True},
+                {'label': 'All', 'value': False}
+            ],
+            value=False
         ),
     ])
 
